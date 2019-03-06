@@ -74,6 +74,13 @@ export default class EditTodo extends Component {
     this.props.history.push("/");
   };
 
+  deleteTodo = e => {
+    // console.log(this.props.match.params.id);
+    axios
+      .delete("http://localhost:4000/todos/" + this.props.match.params.id)
+      .then(res => console.log(res.data));
+    this.props.history.push("/");
+  };
   render() {
     return (
       <div>
@@ -149,6 +156,9 @@ export default class EditTodo extends Component {
 
           <Button variant='primary' type='submit'>
             Update Todo
+          </Button>
+          <Button variant='danger' onClick={this.deleteTodo}>
+            Delete Todo
           </Button>
         </Form>
       </div>
